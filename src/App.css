@@ -1,0 +1,119 @@
+.login_form{
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+.loadIndicator{
+  margin: 150px 0;
+  width: 100%;
+  text-align: center;
+}
+.navbar_block{
+  margin: auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar{
+  width: 100%;
+  padding: 20px;
+  background: #9be57f;
+}
+.navbar a{
+  padding: 20px;
+  text-decoration: none;
+  color: #335c23;
+}
+
+.navbar a:hover{
+  background: #87df68;
+  color: #ffffff;
+}
+
+.h1Main{
+  margin: 25px 10px 20px 17px;
+  font-size: 30px;
+}
+.left_box{
+  flex: 2;
+  margin: 20px 10px 20px 50px;
+}
+.add_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.select{
+  padding: 8px;
+  margin: 5px 20px;
+}
+.panelPostNav{
+  padding: 20px 50px;
+  height: 100vh;
+  background: honeydew;
+  border-right: solid 1px #e5e5e5;
+  border-left: solid 1px #e5e5e5;
+  box-shadow: 7px 8px 5px #fbfbfb;
+}
+
+.title_posts{
+  padding: 10px 0;
+  font-size: 25px;
+}
+
+.noPosts{
+  text-align: center;
+  margin: 50px auto;
+}
+.app{
+  margin: auto;
+  max-width: 1200px;
+}
+.PostItem{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  border-bottom: solid 1px #e5e5e5;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
