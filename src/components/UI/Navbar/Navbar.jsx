@@ -11,6 +11,7 @@ const Navbar = () => {
     const logout = () => {
         setIsAuth(false)
         localStorage.removeItem('auth')
+        localStorage.removeItem('access_token')
 
     }
 

@@ -32,12 +32,13 @@ function Login() {
             if(response.status === 200) {
                 setIsAuth(true)
                 localStorage.setItem('auth', 'true')
+                localStorage.setItem('access_token', response.data.id)
             } 
             //console.log(response);
             //console.log(response.data.id);
         })
         .catch(function (error) {
-            console.log(error);
+            alert('Не правильный логин или пароль')
         });
     }
         
