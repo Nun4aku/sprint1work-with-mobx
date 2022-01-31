@@ -1,31 +1,39 @@
 import React, {useState, useMemo, useEffect} from 'react';
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, makeObservable} from "mobx";
 import PostService from '../components/API/PostService';
+import { network } from '../components/API/PostService';
+
+
+import { Component } from 'react-dom';
+import { observable, computed, configure, action, decorate } from 'mobx';
+import { observer } from 'mobx-react';
 
 class PostsStore {
 
-    /*
-    posts = [
-        { id: 1, title: 'Aзаголовок', body: 'R_это текст из локального стейта' },
-        { id: 2, title: '1заголовок2', body: 'T_это текст из локального стейта' },
-        { id: 3, title: 'Tзаголовок2', body: 'S_это текст из локального стейта' },
-        { id: 4, title: 'Aзаголовок4', body: 'R_это текст из локального стейта' },
-        { id: 5, title: '1заголовок5', body: 'T_это текст из локального стейта' },
-        { id: 6, title: 'Tзаголовок6', body: 'S_это текст из локального стейта' },
-    ]
-    */
-    posts = []
-    
-    
-    //posts = PostService.getAll();
-
-
     constructor() {
-        makeAutoObservable(this)
+        makeObservable(this, {
+            posts: observable, 
+            isPostLoading: observable, 
+            getPosts: action
+        })
+    }
+
+    posts = [];
+    isPostLoading = true
+
+    async getPosts() {
+        
+        try {
+            this.posts = await PostService.getAll()
+        }
+        finally {
+            this.isPostLoading = false
+        }
     }
     
 
-    
-    
 }
+
+
+
 export default new PostsStore();

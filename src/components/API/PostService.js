@@ -1,20 +1,26 @@
 import axios from "axios";
-
 export default class PostService {
     
 
     static async getAll () {
 
-        const access_token = localStorage.getItem('access_token');
-
         try {
-            const response = await axios.get(`http://localhost:3000/api/tasks?access_token=${access_token}`)
-            //console.log(response.data)
+            const response = await axiosOptions().get('tasks')
             return response.data
     
         } catch (e) {
             console.log(e);
         }
     }
+}
 
+
+function axiosOptions () {
+
+    const instance = axios.create({
+        baseURL: 'http://localhost:3000/api/',
+        headers: {'access_token': localStorage.getItem('access_token')}
+    });
+
+    return instance;
 }

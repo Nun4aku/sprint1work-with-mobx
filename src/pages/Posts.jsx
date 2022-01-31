@@ -6,34 +6,26 @@ import MySelect from '../components/UI/select/MySelect';
 import noPosts from '../img/noPosts.png';
 import MyInput from '../components/UI/input/MyInput';
 import PostService from '../components/API/PostService';
+import { observer } from 'mobx-react';
 
 import PostsStore from '../store/PostsStore';
+
 
 
 function Posts() {
 
   //стейт с постами
-  
-  
-
   //исспользовать пустой массив зависимости, что бы useEffect отработал при отрисовки 1 раз
   useEffect( () => {
-    fetchPosts()
+      setTimeout ( async() => {
+        PostsStore.getPosts()
+      }, 1000)
   },[])
-
-  async function fetchPosts() {
-    setIstPostLoading(true);
-
-    setTimeout ( async() => {
-      PostsStore.posts = await PostService.getAll();
-      setIstPostLoading(false);
-    }, 1000) 
-  }
   
+
 
   const [selectedSort, setSelectedSort] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
-  const [isPostLoading, setIstPostLoading] = useState (false)
 
 
 
@@ -105,7 +97,7 @@ function Posts() {
 
 
           
-          {isPostLoading //проверка на загрузку постов
+          {PostsStore.isPostLoading //проверка на загрузку постов
             ? <div className='loadIndicator'>Loading...</div>  //если посты не згружены то Loading...
               
             : <PostList />
@@ -120,4 +112,4 @@ function Posts() {
   );
 }
 
-export default Posts;
+export default observer(Posts) ;
