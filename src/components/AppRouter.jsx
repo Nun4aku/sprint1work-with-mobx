@@ -6,7 +6,6 @@ import { observer } from "mobx-react"
 
 const AppRouter = () => {
 
-    console.log(UserStore.isAuth)
 
     return(
         UserStore.isAuth

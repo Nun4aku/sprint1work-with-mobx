@@ -7,18 +7,19 @@ import AppRouter from './components/AppRouter';
 
 import UserStore from './store/UserStore';
 import { observe } from 'mobx';
-
+import { runInAction } from 'mobx';
 
 function App() {
 
-  
-
   useEffect ( () => {
     if(localStorage.getItem('auth')){
-      UserStore.isAuth = true
-      console.log(`UserStore.isAuth = ${UserStore.isAuth}`)
+      
+      runInAction( () => {
+        UserStore.isAuth = true
+      })
+      //console.log(`UserStore.isAuth = ${UserStore.isAuth}`)
     } else {
-      console.log(`UserStore.isAuth = ${UserStore.isAuth}`)
+      //console.log(`UserStore.isAuth = ${UserStore.isAuth}`)
     }
   },[])
  

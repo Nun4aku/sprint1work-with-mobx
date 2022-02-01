@@ -16,11 +16,12 @@ class UserStore {
             isAuth: observable,
             user: observable,
             login: action,
+            setUser: action,
+            logout: action,
         }) 
     }
 
     isAuth = false
-
 
     user = {
         email: 'nun2@gmail.com',
@@ -28,13 +29,12 @@ class UserStore {
     }
 
     setUser = ( {name, value } ) => {
-        
+
         runInAction(() => {
             this.user = { ...this.user, [name]:value}
         })
 
     }
-
 
     login = () => {
         
@@ -51,15 +51,23 @@ class UserStore {
                 runInAction(() => {
                     this.isAuth = true;
                 })
-                //console.log(`this.isAuth = ${this.isAuth}`);
+                console.log(`this.isAuth = ${this.isAuth}`);
             
         })
         .catch(function (error) {
             alert('Не правильный логин или пароль')
         });
- 
     }
-  
+
+    logout = () => {   
+        axios.post('http://localhost:3000/api/Users/logout')
+        localStorage.removeItem('auth')
+        localStorage.removeItem('access_token')
+        runInAction(() => {
+            this.isAuth = false;
+        })
+        console.log(`this.isAuth = ${this.isAuth}`);
+    }
 
 }
 
