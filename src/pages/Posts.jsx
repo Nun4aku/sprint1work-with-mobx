@@ -98,7 +98,7 @@ function Posts() {
           </div>
             */}
 
-          
+          {console.log(PostsStore.isPostLoading)}
           {PostsStore.isPostLoading //проверка на загрузку постов
             ? <div className='loadIndicator'>Loading...</div>  //если посты не згружены то Loading...
               

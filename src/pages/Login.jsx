@@ -30,6 +30,7 @@ function Login() {
                         onChange={e => UserStore.setUser( e.target )}
                         text='password' 
                         placeholder='Password'
+                        type="password"
                         
                     />
                     <MyButton onClick={ (e) =>  { e.preventDefault(); UserStore.login()} } >Войти</MyButton>
