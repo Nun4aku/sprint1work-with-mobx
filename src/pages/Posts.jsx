@@ -78,6 +78,8 @@ function Posts() {
         </div>
 
         <div className='left_box'>
+          
+          {/*
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <MySelect
               value = {selectedSort}
@@ -94,7 +96,7 @@ function Posts() {
               placeholder="search"
             />
           </div>
-
+            */}
 
           
           {PostsStore.isPostLoading //проверка на загрузку постов

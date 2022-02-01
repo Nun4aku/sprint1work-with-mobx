@@ -13,6 +13,18 @@ export default class PostService {
         }
     }
 
+    static  addPost = async (post) => {
+
+        try {
+            const response = await axiosOptions().post('tasks', post)
+            return response.data
+        }
+        catch (e) {
+            console.log(e);
+        }
+
+    }
+
 }
 
 

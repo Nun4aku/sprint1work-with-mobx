@@ -57,10 +57,19 @@ class PostsStore {
     addPostFunction = () => {
         console.log(this.addPost)
 
+/*
+        PostService.addPost(this.addPost)
 
+        runInAction( async () => {
+            this.addPost = { title: '', body: '', done: false }
+        })
+        this.getPosts()
+*/
+
+        //рабочий аксиос без PostService
         axios.post(`http://localhost:3000/api/tasks?access_token=${localStorage.getItem('access_token')}`, this.addPost)
         .then( (response) => {
-
+                
                 console.log(response);
                 console.log(response.data.id);
 
@@ -73,6 +82,7 @@ class PostsStore {
         .catch(function (error) {
             alert('Что-то пошло не так')
         }); 
+
     }
 
     //функция удаления постов

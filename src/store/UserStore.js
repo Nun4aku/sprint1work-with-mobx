@@ -56,7 +56,7 @@ class UserStore {
     }
 
     logout = () => {   
-        axios.post('http://localhost:3000/api/Users/logout')
+        axios.post(`http://localhost:3000/api/Users/logout?access_token=${localStorage.getItem('access_token')}`)
         localStorage.removeItem('auth')
         localStorage.removeItem('access_token')
         runInAction(() => {

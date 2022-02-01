@@ -15,7 +15,7 @@ function Login() {
         <div className='app'>
             <div className='login_form'>
                 <h1>Форма входа</h1>
-                <form >
+                <form className="AuthForm">
                     <MyInput 
                         name = 'email'
                         value={UserStore.user.email}

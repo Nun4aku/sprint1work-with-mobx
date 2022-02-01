@@ -1,7 +1,15 @@
+.AuthForm{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .login_form{
-  margin: auto;
-  width: 100%;
+  margin: 60px auto;
+  width: 50%;
   text-align: center;
+  padding: 0 30px 40px;
+  border: solid 1px #ededed;
+  border-radius: 10px;
 }
 .loadIndicator{
   margin: 150px 0;
@@ -16,7 +24,6 @@
   align-items: center;
 }
 .navbar{
-  width: 100%;
   padding: 20px;
   background: #9be57f;
 }
@@ -50,16 +57,21 @@
 }
 .panelPostNav{
   padding: 20px 50px;
-  height: 100vh;
   background: honeydew;
   border-right: solid 1px #e5e5e5;
   border-left: solid 1px #e5e5e5;
   box-shadow: 7px 8px 5px #fbfbfb;
+  height: calc(100vh - 110px);
 }
 
 .title_posts{
-  padding: 10px 0;
+  padding: 10px 0px;
+  margin: 0 30px 15px 0;
   font-size: 25px;
+}
+.title_text{
+  margin-right: 30px;
+  text-align: justify;
 }
 
 .noPosts{

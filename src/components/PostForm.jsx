@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import '../App.css'
+import MyTextArea from './UI/MyTextArea/MyTextArea';
 
 import PostsStore from "../store/PostsStore";
 import { observer } from 'mobx-react';
@@ -17,7 +18,9 @@ const PostForm = ( {create} ) => {
                 type="text" 
                 placeholder='название поста' 
             />
-            <MyInput 
+            
+            <MyTextArea 
+                rows="20"
                 name="body"
                 value={PostsStore.addPost.body}
                 onChange={ e => PostsStore.setAddPost( e.target ) }
