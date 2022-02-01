@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { Switch, Redirect, Link, Route} from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../components/router/index';
-import { AuthContext } from '../context/index';
-
+import UserStore from "../store/UserStore";
+import { observer } from "mobx-react"
 
 const AppRouter = () => {
 
-    const { isAuth, setIsAuth } = useContext(AuthContext);
+    console.log(UserStore.isAuth)
 
     return(
-        isAuth
+        UserStore.isAuth
         ? 
             <Switch>
                 {privateRoutes.map ( (route) => 
@@ -27,4 +27,4 @@ const AppRouter = () => {
     )
 }
 
-export default AppRouter;
+export default observer(AppRouter);

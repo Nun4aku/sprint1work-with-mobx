@@ -3,7 +3,7 @@ import '../App.css';
 import PostsStore from '../store/PostsStore';
 
 
-const PostList = observer ( () => {
+const PostList =  () => {
   return (
     <>
         <h1 className="h1Main">Список постов</h1>
@@ -22,9 +22,11 @@ const PostList = observer ( () => {
 
     </>
   )
-})
+}
 
-export default PostList;
+
+
+export default observer (PostList);
 
 
 

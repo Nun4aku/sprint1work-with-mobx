@@ -4,26 +4,32 @@ import { BrowserRouter, Route, Link, Switch, Redirect} from 'react-router-dom';
 
 import Navbar from './components/UI/Navbar/Navbar';
 import AppRouter from './components/AppRouter';
-import { AuthContext } from './context';
+
+import UserStore from './store/UserStore';
+import { observe } from 'mobx';
 
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(false);
+  
 
   useEffect ( () => {
     if(localStorage.getItem('auth')){
-      setIsAuth(true)
+      UserStore.isAuth = true
+      console.log(`UserStore.isAuth = ${UserStore.isAuth}`)
+    } else {
+      console.log(`UserStore.isAuth = ${UserStore.isAuth}`)
     }
   },[])
+ 
 
   return (
-    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
-        <BrowserRouter>
-          <Navbar />
-          <AppRouter />
-      </BrowserRouter>
-    </AuthContext.Provider>
+    
+    <BrowserRouter>
+        <Navbar />
+        <AppRouter />
+    </BrowserRouter>
+
     
   )
 }
