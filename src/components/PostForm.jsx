@@ -3,7 +3,8 @@ import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import '../App.css'
 
-
+import PostsStore from "../store/PostsStore";
+import { observer } from 'mobx-react';
 
 const PostForm = ( {create} ) => {
 
@@ -26,23 +27,31 @@ const PostForm = ( {create} ) => {
     return (
         <form className="add_form">
             <MyInput
-                value={post.title}
-                onChange={e => setPost( {...post, title: e.target.value} )}
+                name="title"
+                value={PostsStore.addPost.title}
+                onChange={ (e) => PostsStore.setAddPost( e.target ) }
                 type="text" 
                 placeholder='название поста' 
             />
             <MyInput 
-                value={post.body}
-                onChange={e => setPost( {...post, body: e.target.value} )}
+                name="body"
+                value={PostsStore.addPost.body}
+                onChange={ e => PostsStore.setAddPost( e.target ) }
                 type="text" 
                 placeholder='текст поста' 
             />
-            <MyButton onClick={addNewPost}>Создать пост</MyButton>
+            <MyButton onClick={ (e) =>  { 
+                                            e.preventDefault();
+                                            PostsStore.addPostFunction()
+                                        } 
+                              }>
+                                  Создать пост
+            </MyButton>
         </form>
     )
 }
 
-export default PostForm;
+export default observer(PostForm);
 
 
 

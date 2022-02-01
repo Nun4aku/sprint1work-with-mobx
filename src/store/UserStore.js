@@ -1,9 +1,5 @@
 import React, {useState, useMemo, useEffect} from 'react';
 import { makeAutoObservable, makeObservable} from "mobx";
-
-
-
-
 import { observable, computed, configure, action, decorate, runInAction} from 'mobx';
 import { observer } from 'mobx-react';
 import axios from "axios";

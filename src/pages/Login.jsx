@@ -11,10 +11,6 @@ import { observer } from 'mobx-react';
 
 function Login() {
 
-
-
-    
-
     return(
         <div className='app'>
             <div className='login_form'>

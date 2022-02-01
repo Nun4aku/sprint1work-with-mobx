@@ -6,8 +6,10 @@ import Navbar from './components/UI/Navbar/Navbar';
 import AppRouter from './components/AppRouter';
 
 import UserStore from './store/UserStore';
-import { observe } from 'mobx';
+import { observer } from 'mobx-react';
 import { runInAction } from 'mobx';
+
+
 
 function App() {
 
@@ -35,4 +37,4 @@ function App() {
   )
 }
 
-export default App;
+export default observer(App);
