@@ -8,22 +8,6 @@ import { observer } from 'mobx-react';
 
 const PostForm = ( {create} ) => {
 
-    const [post, setPost] = useState( {title: '', body: ''} )
-
-    const addNewPost = (e) => {
-        e.preventDefault();
-        
-        console.log(post)
-        
-        /*
-        const newPost = {
-            ...post, id: Date.now()
-        }
-        create(newPost)
-        setPost( {title: '', body: ''} )
-        */
-      }
-
     return (
         <form className="add_form">
             <MyInput
@@ -45,7 +29,7 @@ const PostForm = ( {create} ) => {
                                             PostsStore.addPostFunction()
                                         } 
                               }>
-                                  Создать пост
+                Создать пост
             </MyButton>
         </form>
     )

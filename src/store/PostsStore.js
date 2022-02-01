@@ -1,11 +1,8 @@
 import React, {useState, useMemo, useEffect} from 'react';
 import { makeAutoObservable, makeObservable} from "mobx";
 import PostService from '../components/API/PostService';
-import { network } from '../components/API/PostService';
 
-
-import { Component } from 'react-dom';
-import { observable, computed, configure, action, decorate, runInAction } from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import axios from "axios";
 
@@ -56,6 +53,7 @@ class PostsStore {
 
     }
 
+    //функция добавления постов
     addPostFunction = () => {
         console.log(this.addPost)
 
@@ -66,17 +64,18 @@ class PostsStore {
                 console.log(response);
                 console.log(response.data.id);
 
-                this.addPost = { title: '', body: '', done: false }
+                runInAction( async () => {
+                    this.addPost = { title: '', body: '', done: false }
+                })
                 this.getPosts()
         
         })
         .catch(function (error) {
             alert('Что-то пошло не так')
-        });
-
-        
+        }); 
     }
 
+    //функция удаления постов
     delPost = (id) => {
         console.log(id);
 
