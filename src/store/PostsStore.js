@@ -106,6 +106,8 @@ class PostsStore {
 
     //Функция получения одного поста
     onePost = {
+        title: '',
+        body: '',
         done: false
     }
 

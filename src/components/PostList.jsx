@@ -31,28 +31,28 @@ const PostList =  () => {
                             <div className='title_posts'>{t.title}</div>
                             <div className='title_text'>{t.body}</div>
                         </div>
-
-{/*кнопка ред. поста*/}
-                        <MyButton onClick={ () => {
+                        <div className="postButtons">
+                            {/*кнопка ред. поста*/}
+                            <MyButton onClick={ () => {
                                                         setEditID(t.id)
                                                         setModalActiveEdit(true)
                                                         PostsStore.getOnePost(t.id)
-                                                  }
-                                          } >
-                            Редактировать
-                        </MyButton>
+                                                    }
+                                            } >
+                                Редактировать
+                            </MyButton>
                         
-{/*кнопка удаления поста*/}
-                        <MyButton onClick={ () => {
-                                                        setDelID(t.id)
-                                                        setModalActive(true)
-                                                  }
-                                          } >
-                            Удалить
-                        </MyButton>
+                            {/*кнопка удаления поста*/}
+                            <MyButton onClick={ () => {
+                                                            setDelID(t.id)
+                                                            setModalActive(true)
+                                                    }
+                                            } >
+                                Удалить
+                            </MyButton>
+                        </div>                         
 
-
-{/*окно удаления поста*/}
+                        {/*окно удаления поста*/}
                         <Modal active={modalActive} setActive={setModalActive} >
                             <h3>
                                 Точно хотите удалить пост ID:{delID}? 
@@ -75,14 +75,15 @@ const PostList =  () => {
                             </div>
                         </Modal>
 
-{/*окно редакт. поста*/}
+                        {/*окно редакт. поста*/}
                         <Modal  active={modalActiveEdit} setActive={setModalActiveEdit}>
                             <h3>
                                Ред пост ID: {editID}
                             </h3>
                             <form>
                                 <div>
-                                    <MyInput 
+                                    <MyInput
+                                        style={{width: '96%'}}
                                         name = 'title'
                                         value={ PostsStore.onePost.title }
                                         onChange={ e => PostsStore.setEditPost( e.target ) }
@@ -91,6 +92,8 @@ const PostList =  () => {
                                 </div>
                                 <div>
                                     <MyTextArea
+                                        rows="20"
+                                        cols="60"
                                         name = 'body'
                                         value={ PostsStore.onePost.body }
                                         onChange={ e => PostsStore.setEditPost( e.target ) }
@@ -114,6 +117,8 @@ const PostList =  () => {
 
 
                         </Modal>
+                        
+
                     </div>
                 )
             }
