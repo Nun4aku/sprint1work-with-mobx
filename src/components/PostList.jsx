@@ -5,6 +5,8 @@ import '../App.css';
 import PostsStore from '../store/PostsStore';
 import MyButton from "./UI/button/MyButton";
 import Modal from './Modal/Modal';
+import MyInput from './UI/input/MyInput';
+import MyTextArea from './UI/MyTextArea/MyTextArea';
 
 
 
@@ -34,6 +36,7 @@ const PostList =  () => {
                         <MyButton onClick={ () => {
                                                         setEditID(t.id)
                                                         setModalActiveEdit(true)
+                                                        PostsStore.getOnePost(t.id)
                                                   }
                                           } >
                             Редактировать
@@ -77,7 +80,35 @@ const PostList =  () => {
                             <h3>
                                Ред пост ID: {editID}
                             </h3>
+                            <form>
+                                <div>
+                                    <MyInput 
+                                        name = 'title'
+                                        value={ PostsStore.onePost.title }
+                                        onChange={ e => PostsStore.setEditPost( e.target ) }
+                                        type="text" 
+                                    />
+                                </div>
+                                <div>
+                                    <MyTextArea
+                                        name = 'body'
+                                        value={ PostsStore.onePost.body }
+                                        onChange={ e => PostsStore.setEditPost( e.target ) }
+                                        type="text" 
+                                    />
+                                </div>
+
+                                <MyButton onClick={ (e) => {
+                                                               e.preventDefault()
+                                                               PostsStore.editOnePost(editID)
+                                                               setModalActiveEdit(false)
+                                                        }
+                                                } 
+                                >
+                                    Сохранить изменения
+                                </MyButton>
                             
+                            </form>
                             
 
 

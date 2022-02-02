@@ -14,9 +14,13 @@ class PostsStore {
             posts: observable, 
             isPostLoading: observable,
             addPost: observable,
+            onePost: observable,
             getPosts: action,
             setAddPost: action,
             addPostFunction: action,
+            getOnePost: action,
+            setEditPost: action,
+            editOnePost: action,
 
         })
     }
@@ -46,11 +50,9 @@ class PostsStore {
     }
 
     setAddPost = ( {name, value } ) => {
-
         runInAction(() => {
             this.addPost = { ...this.addPost, [name]:value}
         })
-
     }
 
     //функция добавления постов
@@ -89,7 +91,6 @@ class PostsStore {
     delPost = (id) => {
         console.log(id);
 
-        
         axios.delete(`http://localhost:3000/api/tasks/${id}?access_token=${localStorage.getItem('access_token')}`)
         .then( (response) => {
 
@@ -101,7 +102,51 @@ class PostsStore {
         .catch(function (error) {
             alert('Что-то пошло не так')
         });
-        
+    }
+
+    //Функция получения одного поста
+    onePost = {
+        done: false
+    }
+
+    getOnePost = (id) => {
+        axios.get(`http://localhost:3000/api/tasks/${id}?access_token=${localStorage.getItem('access_token')}`)
+            .then( (response) => {
+                    
+                    console.log(response);
+                    console.log(response.data.id);
+                    runInAction( async () => {
+                        this.onePost = response.data
+                    })
+                    return response
+            
+            })
+            .catch(function (error) {
+                alert('Что-то пошло не так')
+        })
+    }
+    
+    setEditPost = ( {name, value } ) => {
+        runInAction(() => {
+            this.onePost = { ...this.onePost, [name]:value}
+        })
+    }
+
+    editOnePost = (id) => {
+        console.log(this.onePost)
+
+        axios.put(`http://localhost:3000/api/tasks/${id}?access_token=${localStorage.getItem('access_token')}`, this.onePost)
+            .then( (response) => {
+                    
+                    console.log(response);
+                    this.getPosts()  
+            
+            })
+            .catch(function (error) {
+                alert('Что-то пошло не так')
+        })
+
+
     }
 
 }
