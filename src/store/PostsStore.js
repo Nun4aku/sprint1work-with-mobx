@@ -89,6 +89,7 @@ class PostsStore {
     delPost = (id) => {
         console.log(id);
 
+        
         axios.delete(`http://localhost:3000/api/tasks/${id}?access_token=${localStorage.getItem('access_token')}`)
         .then( (response) => {
 
@@ -100,6 +101,7 @@ class PostsStore {
         .catch(function (error) {
             alert('Что-то пошло не так')
         });
+        
     }
 
 }

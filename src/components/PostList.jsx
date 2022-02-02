@@ -13,6 +13,8 @@ const PostList =  () => {
 
 
     const [modalActive, setModalActive] = useState(false)
+    const [delID, setDelID] = useState('')
+
 
     return (
         <>
@@ -20,23 +22,30 @@ const PostList =  () => {
             {
                 PostsStore.posts.map ( t =>
                     <div className="PostItem" key={t.id}>
-                        <div className='posts'>    
+                        <div className='posts'>   
+                            <div>ID:{t.id}</div>
                             <div className='title_posts'>{t.title}</div>
                             <div className='title_text'>{t.body}</div>
                         </div>
                         
 
-                        <MyButton onClick={ () => setModalActive(true) } >
+                        <MyButton onClick={ () => {
+                                                        setDelID(t.id)
+                                                        setModalActive(true) 
+                                                        console.log(t.id)
+                                                  }
+                                          } >
                             Удалить
                         </MyButton>
-                        <Modal  active={modalActive} setActive={setModalActive}>
+
+                        <Modal active={modalActive} setActive={setModalActive} delID={delID}>
                             <h3>
-                                Точно хотите ужалить этот пост?
+                                Точно хотите удалить пост ID:{delID}? 
                             </h3>
                             <div className="btnDelorNo">
                                 <MyButton 
                                     onClick={ () => {
-                                                        PostsStore.delPost(t.id)
+                                                        PostsStore.delPost(delID)
                                                         setModalActive(false)
                                                     } 
                                             } 
