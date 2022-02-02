@@ -15,19 +15,25 @@ class PostsStore {
             isPostLoading: observable,
             addPost: observable,
             onePost: observable,
+            searchQuery: observable,
             getPosts: action,
             setAddPost: action,
             addPostFunction: action,
             getOnePost: action,
             setEditPost: action,
             editOnePost: action,
+            sortPost: action,
+            sortPostRevers: action,
+            search: action,
 
         })
     }
 
     posts = [];
+    
     isPostLoading = true
     
+    //фенкция получения постов с Бэка
     async getPosts() {
 
         try {
@@ -42,7 +48,34 @@ class PostsStore {
         }
     }
     
+    //функция сортировки постов
+    sortPost = ( sortSelect ) => {
+        console.log(`отработала сортировка ↓ по ${sortSelect}`)
+        this.posts.sort( (a,b) => a[sortSelect].localeCompare(b[sortSelect]))
+        
+    }
+    sortPostRevers = ( sortSelect ) => {
+        console.log(`отработала сортировка ↑ по ${sortSelect}`)
+        this.posts.sort( (a,b) => b[sortSelect].localeCompare(a[sortSelect]))
+    }
 
+
+    //Поиск
+    searchQuery = ''
+
+    
+    search = (value) => {
+        runInAction(() => {
+            this.searchQuery = value
+            console.log(this.searchQuery)
+            const searchPosts = this.posts.filter( post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+            console.log(searchPosts)
+        })
+
+    }
+
+
+    //Добавление поста
     addPost = {
         title: '',
         body: '',

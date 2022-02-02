@@ -9,6 +9,7 @@ import PostService from '../components/API/PostService';
 import { observer } from 'mobx-react';
 
 import PostsStore from '../store/PostsStore';
+import MyButton from '../components/UI/button/MyButton';
 
 
 
@@ -28,19 +29,6 @@ function Posts() {
   const [searchQuery, setSearchQuery] = useState('')
 
 
-
-  //использовал useMemo для сортировки массива постов
-  //колбек вызвается, если изменяются посты posts или выбранный метод сортировки selectedSort
-  /*
-  const sortedPosts = useMemo( () => {
-    //console.log ('отработала сортировка')
-    if (selectedSort) {
-      return [...posts].sort( (a,b) => a[selectedSort].localeCompare(b[selectedSort]))
-    }
-    return posts
-
-  }, [selectedSort, posts])
-*/
   /*
   //отсортированные и отфильтрованный поиском массив
   const sortedAndSearchPosts = useMemo( () => {
@@ -49,23 +37,7 @@ function Posts() {
 
   }, [searchQuery, sortedPosts])
 */
-  /*
-  //создание нового поста
-  const createPost = (newPost) => {
-    setPosts ( [...posts, newPost] )
-  }
 
-  //удаление поста
-  const removePost = (post) => {
-    setPosts ( posts.filter (p => p.id !== post.id) )
-  }
-*/
-/*
-  //функция сортировки
-  const sortPost = (sort) => {
-    setSelectedSort(sort);
-  }
-  */
 
   return (
     <div className="app">
@@ -79,8 +51,28 @@ function Posts() {
 
         <div className='left_box'>
           
-          {/*
-          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          
+          <div className='sortbox'>
+            
+            <label>Сортировать по: </label>
+            <MyButton onClick = { ()=> PostsStore.sortPost('title')} >
+              по заголовку ↓
+            </MyButton>
+
+            <MyButton onClick = { ()=> PostsStore.sortPostRevers('title')} >
+              по заголовку ↑
+            </MyButton>
+
+            <MyButton onClick = { ()=> PostsStore.sortPost('body')} >
+              по тексту поста ↓
+            </MyButton>
+
+            <MyButton onClick = { ()=> PostsStore.sortPostRevers('body')} >
+              по тексту поста ↑
+            </MyButton>
+            
+            
+            {/*
             <MySelect
               value = {selectedSort}
               
@@ -95,8 +87,15 @@ function Posts() {
               onChange = {e => setSearchQuery(e.target.value)}
               placeholder="search"
             />
-          </div>
             */}
+          </div>
+          <div>
+            <MyInput
+              value = {PostsStore.searchQuery}
+              onChange = { (e) => PostsStore.search(e.target.value) } 
+              placeholder="search"
+            /> 
+          </div>
 
           
           {PostsStore.isPostLoading //проверка на загрузку постов

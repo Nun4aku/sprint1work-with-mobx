@@ -1,3 +1,11 @@
+.sortbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border: solid 1px #9be57f;
+  border-radius: 10px;
+}
 .postButtons{
   display: flex;
   flex-direction: column;
