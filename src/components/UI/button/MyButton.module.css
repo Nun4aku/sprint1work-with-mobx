@@ -2,7 +2,8 @@
     padding: 10px 20px;
     border: solid 1px #e5e5e5;
     background: white;
-    border-radius: 5px;
+    border-radius: 15px;
+    margin: 4px 0px;
 }
 .myBtn:hover{
     background: #9be57f;

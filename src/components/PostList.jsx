@@ -33,21 +33,26 @@ const PostList =  () => {
                         </div>
                         <div className="postButtons">
                             {/*кнопка ред. поста*/}
-                            <MyButton onClick={ () => {
-                                                        setEditID(t.id)
-                                                        setModalActiveEdit(true)
-                                                        PostsStore.getOnePost(t.id)
-                                                    }
-                                            } >
+                            <MyButton 
+                                onClick={ 
+                                    () => {
+                                        setEditID(t.id)
+                                        setModalActiveEdit(true)
+                                        PostsStore.getOnePost(t.id)
+                                    }
+                                }
+                            >
                                 Редактировать
                             </MyButton>
                         
                             {/*кнопка удаления поста*/}
-                            <MyButton onClick={ () => {
-                                                            setDelID(t.id)
-                                                            setModalActive(true)
-                                                    }
-                                            } >
+                            <MyButton 
+                                onClick={ () => {
+                                                    setDelID(t.id)
+                                                    setModalActive(true)
+                                                }
+                                } 
+                            >
                                 Удалить
                             </MyButton>
                         </div>                         

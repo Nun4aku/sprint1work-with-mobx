@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useEffect} from 'react';
-import { makeAutoObservable, makeObservable} from "mobx";
+import { makeAutoObservable, makeObservable, toJS} from "mobx";
 import PostService from '../components/API/PostService';
 
 import { observable, action, runInAction } from 'mobx';
@@ -33,13 +33,14 @@ class PostsStore {
     
     isPostLoading = true
     
-    //фенкция получения постов с Бэка
+    //функция получения постов с Бэка
     async getPosts() {
 
         try {
-            runInAction( async () => {
-                this.posts = await PostService.getAll()
-            })
+                const res = await PostService.getAll()
+                runInAction( () => {
+                    this.posts = res
+                })
         }
         finally {
             runInAction( () => {
@@ -50,12 +51,12 @@ class PostsStore {
     
     //функция сортировки постов
     sortPost = ( sortSelect ) => {
-        console.log(`отработала сортировка ↓ по ${sortSelect}`)
+        //console.log(`отработала сортировка ↓ по ${sortSelect}`)
         this.posts.sort( (a,b) => a[sortSelect].localeCompare(b[sortSelect]))
         
     }
     sortPostRevers = ( sortSelect ) => {
-        console.log(`отработала сортировка ↑ по ${sortSelect}`)
+        //console.log(`отработала сортировка ↑ по ${sortSelect}`)
         this.posts.sort( (a,b) => b[sortSelect].localeCompare(a[sortSelect]))
     }
 
@@ -63,7 +64,6 @@ class PostsStore {
     //Поиск
     searchQuery = ''
 
-    
     search = (value) => {
         runInAction(() => {
             this.searchQuery = value
@@ -89,18 +89,18 @@ class PostsStore {
     }
 
     //функция добавления постов
-    addPostFunction = () => {
-        console.log(this.addPost)
+    addPostFunction = async () => {
+        //console.log(toJS(this.addPost))
 
-/*
-        PostService.addPost(this.addPost)
+        await PostService.addPost(this.addPost)
 
         runInAction( async () => {
             this.addPost = { title: '', body: '', done: false }
         })
+        
         this.getPosts()
-*/
 
+/*
         //рабочий аксиос без PostService
         axios.post(`http://localhost:3000/api/tasks?access_token=${localStorage.getItem('access_token')}`, this.addPost)
         .then( (response) => {
@@ -117,7 +117,7 @@ class PostsStore {
         .catch(function (error) {
             alert('Что-то пошло не так')
         }); 
-
+*/
     }
 
     //функция удаления постов

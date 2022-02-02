@@ -22,7 +22,6 @@ export default class PostService {
         catch (e) {
             console.log(e);
         }
-
     }
 
 }

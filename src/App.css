@@ -36,18 +36,19 @@
   align-items: center;
 }
 .navbar{
-  padding: 20px;
-  background: #9be57f;
+  padding: 13px;
+  background: #558b5c;
 }
 .navbar a{
   padding: 20px;
   text-decoration: none;
-  color: #335c23;
+  color: #ffffff;
 }
 
 .navbar a:hover{
-  background: #87df68;
-  color: #ffffff;
+  background: #6c9e73;
+  color: #fcfcfc;
+  border-bottom: solid 5px #9be57f
 }
 
 .h1Main{
@@ -69,7 +70,7 @@
 }
 .panelPostNav{
   padding: 20px 50px;
-  background: honeydew;
+  background: #fbfbfb;
   border: solid 1px #e5e5e5;
   border-radius: 10px;
   box-shadow: 7px 8px 5px #fbfbfb;

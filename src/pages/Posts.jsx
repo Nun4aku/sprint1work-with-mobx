@@ -71,23 +71,6 @@ function Posts() {
               по тексту поста ↑
             </MyButton>
             
-            
-            {/*
-            <MySelect
-              value = {selectedSort}
-              
-              defaultValue = "Сортировать по:"
-              options = {[
-                {value: 'title', name: 'по названию'},
-                {value: 'body', name: 'по описанию'}
-              ]}
-            />
-            <MyInput
-              value = {searchQuery}
-              onChange = {e => setSearchQuery(e.target.value)}
-              placeholder="search"
-            />
-            */}
           </div>
           <div>
             <MyInput
