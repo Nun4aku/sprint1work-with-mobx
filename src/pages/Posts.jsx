@@ -55,6 +55,12 @@ function Posts() {
           <div className='sortbox'>
             
             <label>Сортировать по: </label>
+            <MyButton onClick = { ()=> PostsStore.sortPostId('id')} >
+              по ID ↓
+            </MyButton>
+            <MyButton onClick = { ()=> PostsStore.sortPostIdRevers('id')} >
+              по ID ↑
+            </MyButton>
             <MyButton onClick = { ()=> PostsStore.sortPost('title')} >
               по заголовку ↓
             </MyButton>
@@ -64,16 +70,16 @@ function Posts() {
             </MyButton>
 
             <MyButton onClick = { ()=> PostsStore.sortPost('body')} >
-              по тексту поста ↓
+              по тексту ↓
             </MyButton>
 
             <MyButton onClick = { ()=> PostsStore.sortPostRevers('body')} >
-              по тексту поста ↑
+              по тексту ↑
             </MyButton>
             
           </div>
           <div>
-            <MyInput
+            <MyInput style={{ textalign: 'right'}}
               value = {PostsStore.searchQuery}
               onChange = { (e) => PostsStore.search(e.target.value) } 
               placeholder="search"
@@ -84,7 +90,10 @@ function Posts() {
           {PostsStore.isPostLoading //проверка на загрузку постов
             ? <div className='loadIndicator'>Loading...</div>  //если посты не згружены то Loading...
               
-            : <PostList />
+            : 
+            PostsStore.searchQuery
+              ? <PostList postArr = {PostsStore.searchArr}/>
+              : <PostList postArr = {PostsStore.posts}/>
           }
 
         </div>

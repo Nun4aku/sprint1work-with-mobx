@@ -2,7 +2,7 @@ import React, {useState, useMemo, useEffect} from 'react';
 import { makeAutoObservable, makeObservable, toJS} from "mobx";
 import PostService from '../components/API/PostService';
 
-import { observable, action, runInAction } from 'mobx';
+import { observable, action, runInAction, computed} from 'mobx';
 import { observer } from 'mobx-react';
 import axios from "axios";
 
@@ -16,6 +16,7 @@ class PostsStore {
             addPost: observable,
             onePost: observable,
             searchQuery: observable,
+            searchArr: observable,
             getPosts: action,
             setAddPost: action,
             addPostFunction: action,
@@ -25,6 +26,7 @@ class PostsStore {
             sortPost: action,
             sortPostRevers: action,
             search: action,
+            
 
         })
     }
@@ -50,6 +52,17 @@ class PostsStore {
     }
     
     //функция сортировки постов
+    sortPostId = ( sortSelect ) => {
+        runInAction( () => {
+            this.posts.sort( (a,b) => a[sortSelect] - b[sortSelect])
+        })
+    }
+    sortPostIdRevers = ( sortSelect ) => {
+        runInAction( () => {
+            this.posts.sort( (a,b) => b[sortSelect] - a[sortSelect])
+        })
+    }
+
     sortPost = ( sortSelect ) => {
         //console.log(`отработала сортировка ↓ по ${sortSelect}`)
         this.posts.sort( (a,b) => a[sortSelect].localeCompare(b[sortSelect]))
@@ -63,13 +76,16 @@ class PostsStore {
 
     //Поиск
     searchQuery = ''
+    searchArr = ''
+
+    
 
     search = (value) => {
         runInAction(() => {
             this.searchQuery = value
             console.log(this.searchQuery)
-            const searchPosts = this.posts.filter( post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
-            console.log(searchPosts)
+            this.searchArr = this.posts.filter( post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+            console.log(toJS(this.searchArr))
         })
 
     }

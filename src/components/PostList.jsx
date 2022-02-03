@@ -11,7 +11,7 @@ import MyTextArea from './UI/MyTextArea/MyTextArea';
 
 
 
-const PostList =  () => {
+const PostList =  ( {postArr} ) => {
 
 
     const [modalActive, setModalActive] = useState(false)
@@ -24,7 +24,7 @@ const PostList =  () => {
         <>
             <h1 className="h1Main">Список постов</h1>
             {
-                PostsStore.posts.map ( t =>
+                postArr.map ( t =>
                     <div className="PostItem" key={t.id}>
                         <div className='posts'>   
                             <div>ID:{t.id}</div>
@@ -47,10 +47,11 @@ const PostList =  () => {
                         
                             {/*кнопка удаления поста*/}
                             <MyButton 
-                                onClick={ () => {
-                                                    setDelID(t.id)
-                                                    setModalActive(true)
-                                                }
+                                onClick={
+                                    () => {
+                                        setDelID(t.id)
+                                        setModalActive(true)
+                                    }
                                 } 
                             >
                                 Удалить
@@ -64,11 +65,12 @@ const PostList =  () => {
                             </h3>
                             <div className="btnDelorNo">
                                 <MyButton 
-                                    onClick={ () => {
-                                                        PostsStore.delPost(delID)
-                                                        setModalActive(false)
-                                                    } 
-                                            } 
+                                    onClick={
+                                        () => {
+                                            PostsStore.delPost(delID)
+                                            setModalActive(false)
+                                        } 
+                                    } 
                                 >
                                     удалить
                                 </MyButton>
@@ -106,12 +108,13 @@ const PostList =  () => {
                                     />
                                 </div>
 
-                                <MyButton onClick={ (e) => {
-                                                               e.preventDefault()
-                                                               PostsStore.editOnePost(editID)
-                                                               setModalActiveEdit(false)
-                                                        }
-                                                } 
+                                <MyButton   onClick={
+                                                (e) => {
+                                                        e.preventDefault()
+                                                        PostsStore.editOnePost(editID)
+                                                        setModalActiveEdit(false)
+                                                }
+                                            } 
                                 >
                                     Сохранить изменения
                                 </MyButton>
