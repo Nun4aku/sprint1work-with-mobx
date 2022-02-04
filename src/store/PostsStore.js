@@ -78,7 +78,10 @@ class PostsStore {
     searchQuery = ''
     searchArr = ''
 
-    
+    get total() {
+        
+        return this.price * this.amount
+    }
 
     search = (value) => {
         runInAction(() => {
