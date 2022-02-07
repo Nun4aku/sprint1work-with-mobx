@@ -78,17 +78,18 @@ class PostsStore {
     searchQuery = ''
     searchArr = ''
 
-    get total() {
-        
-        return this.price * this.amount
-    }
+    // get total() {
+    //     return this.posts.filter( post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    // }
 
     search = (value) => {
         runInAction(() => {
             this.searchQuery = value
+
             console.log(this.searchQuery)
             this.searchArr = this.posts.filter( post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
             console.log(toJS(this.searchArr))
+
         })
 
     }
